@@ -7,8 +7,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>A Jasmine Project</name>
-    <url>http://github.com/searls/jasmine-maven-plugin</url>
+    <name>Biggles Web</name>
+    <url>http://github.com/emilb/biggles</url>
 
     <prerequisites>
         <maven>3.0.0</maven>

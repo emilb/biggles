@@ -27,7 +27,7 @@ public class WebappConfig extends WebMvcConfigurerAdapter {
     Environment env;
 
 
-    //Tell SpingMVC where to find view scripts
+    //Tell SpringMVC where to find view scripts
     @Bean
     public InternalResourceViewResolver setupViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -54,8 +54,6 @@ public class WebappConfig extends WebMvcConfigurerAdapter {
         ds.setPassword(env.getProperty("db.pass"));
         ds.setValidationQueryTimeout(5);
         ds.setValidationQuery("select 1");
-
-        System.out.println("\n\n\n\ndatasource created!");
         return ds;
     }
 

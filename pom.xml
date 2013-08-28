@@ -63,6 +63,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.26</version>
+        </dependency>
+
         <!--We need servlet API for compiling the classes. Not needed in runtime -->
         <dependency>
             <groupId>javax.servlet</groupId>

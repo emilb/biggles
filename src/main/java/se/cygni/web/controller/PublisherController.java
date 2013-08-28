@@ -20,8 +20,6 @@ public class PublisherController {
     @Autowired
     public PublisherController(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-
-        System.out.println(this.jdbcTemplate.queryForObject("select count(*) from Böcker", Long.class));
     }
 
     @RequestMapping("list")

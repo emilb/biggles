@@ -7,6 +7,7 @@ public class Book {
     public final String titleEnglish;
     public final String author;
     public final String translator;
+    public final String illustrator;
     public final String publisherSwedish;
     public final String publisherEnglish;
     public final String yearFirstEditionSwedish;
@@ -20,7 +21,7 @@ public class Book {
     public final int chrono;
 
     public Book(int id, String titleSwedish, String titleEnglish,
-                String author, String translator, String publisherSwedish,
+                String author, String translator, String illustrator, String publisherSwedish,
                 String publisherEnglish, String yearFirstEditionSwedish,
                 String yearFirstEditionEnglish, String yearThisEdition,
                 String noofEditions, String coverNumber, boolean hasCover,
@@ -31,6 +32,7 @@ public class Book {
         this.titleEnglish = titleEnglish;
         this.author = author;
         this.translator = translator;
+        this.illustrator = illustrator;
         this.publisherSwedish = publisherSwedish;
         this.publisherEnglish = publisherEnglish;
         this.yearFirstEditionSwedish = yearFirstEditionSwedish;

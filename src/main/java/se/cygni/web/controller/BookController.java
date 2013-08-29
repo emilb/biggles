@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import se.cygni.web.model.Book;
+import se.cygni.web.util.WebUtil;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -108,6 +109,8 @@ public class BookController {
                     rs.getString("TitelEng"),
                     rs.getString("FörfattareFörnamn") + " " + rs.getString("FörfattareEfternamn"),
                     rs.getString("ÖversättareFörnamn") + " " + rs.getString("ÖversättareEfternamn"),
+                    rs.getString("IllustratörFörnamn") + " " + rs.getString("IllustratörEfternamn"),
+
                     rs.getString("SVFörlag"),
                     rs.getString("ENGFörlag"),
                     rs.getString("SV1Upplaga"),
@@ -117,7 +120,7 @@ public class BookController {
                     rs.getString("RyggNr"),
                     rs.getBoolean("Konvelut"),
                     rs.getString("Handling"),
-                    null, //coverImagePath
+                    WebUtil.getCoverImageUrl(rs.getString("SVFörlag.SVkort"), rs.getString("TitelSV"), rs.getString("DennaUpplaga")), //coverImagePath
                     rs.getInt("Chrono")
                     );
         }

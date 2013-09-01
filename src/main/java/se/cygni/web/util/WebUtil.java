@@ -13,7 +13,7 @@ public class WebUtil {
         put("Bonn", "bonn");
         put("Bonn J", "bonnj");
         put("Bonn Ö N F", "bonnonf");
-        put("Bonn Rr", "bonrr");
+        put("Bonn Rr", "bonnrr");
         put("BW Lejon", "bwlejon");
         put("BW pock", "bwpock");
         put("BW pop", "bwpop");
@@ -25,7 +25,7 @@ public class WebUtil {
         put("", "pilot");
         put("Schildts", "schildts");
         put("SEMIC", "semic");
-        put("Sv Bokf", "svbok");
+        put("Sv Bokf", "svbokf");
         put("Wahlströms", "wahlstroms");
     }};
 

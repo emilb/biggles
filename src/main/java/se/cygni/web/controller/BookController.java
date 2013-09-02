@@ -21,8 +21,6 @@ public class BookController {
 
     private JdbcTemplate jdbcTemplate;
 
-    // @ToDo: Fix parameterized queries
-
     private static String SQL_ALL_BOOKS =
             "SELECT " +
                 "Böcker.BokID, " +
@@ -75,7 +73,7 @@ public class BookController {
     @ResponseBody
     public Book byId(@PathVariable String id) {
 
-        return this.jdbcTemplate.query(SQL_ALL_BOOKS + " AND Böcker.BokID = " + id, new BookMapper()).get(0);
+        return this.jdbcTemplate.queryForObject(SQL_ALL_BOOKS + "AND Böcker.BokID = ?", new Object[] {id}, new BookMapper());
     }
 
     @RequestMapping("list")
@@ -87,7 +85,7 @@ public class BookController {
     @RequestMapping("search/title/{term}")
     @ResponseBody
     public List<Book> searchBooks(@PathVariable String term) {
-        return this.jdbcTemplate.query(createQuery("Titlar.TitelSV", term, true), new BookMapper());
+        return this.jdbcTemplate.query(createQuery("Titlar.TitelSV", true), new Object[] {term}, new BookMapper());
     }
 
     @RequestMapping("list/title")
@@ -96,8 +94,19 @@ public class BookController {
         return this.jdbcTemplate.queryForList("select distinct TitelSV from Titlar order by TitelSV asc", String.class);
     }
 
-    private String createQuery(String column, String param, boolean isLike) {
-        return SQL_ALL_BOOKS + "AND " + column + " LIKE '%" + param + "%'";
+    @RequestMapping("list/publisher/id/{id}")
+    @ResponseBody
+    public List<Book> listByPublisher(@PathVariable int id) {
+        // WTF Why doesn't this work?
+//        return this.jdbcTemplate.query(createQuery("SVFörlag.SVFörlagID", false), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.query(SQL_ALL_BOOKS + "AND SVFörlag.SVFörlagID = ?", new Object[] {id}, new BookMapper());
+    }
+
+    private String createQuery(String column, boolean isLike) {
+        if (isLike)
+            return SQL_ALL_BOOKS + "AND " + column + " LIKE CONCAT('%', ?, '%')";
+
+        return SQL_ALL_BOOKS + "AND " + column + " = ?)";
     }
 
     public final class BookMapper implements RowMapper<Book> {

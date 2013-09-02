@@ -1,9 +1,12 @@
 package se.cygni.web.model;
 
+import com.github.slugify.Slugify;
+
 public class Book {
 
     public final int id;
     public final String titleSwedish;
+    public final String titleSwedishSlug;
     public final String titleEnglish;
     public final String author;
     public final String translator;
@@ -29,6 +32,7 @@ public class Book {
 
         this.id = id;
         this.titleSwedish = titleSwedish;
+        this.titleSwedishSlug = Slugify.slugify(titleSwedish);
         this.titleEnglish = titleEnglish;
         this.author = author;
         this.translator = translator;

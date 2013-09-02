@@ -3,3 +3,14 @@ function BooksCtrl($scope, $http) {
         $scope.books = data;
     });
 }
+
+function BookListCtrl($scope, $http) { // <-- need to get search value somewhere
+
+}
+
+function BookDetailCtrl($scope, $http, $routeParams) {
+	$scope.bookId = $routeParams.bookId;
+	$http.get('api/book/id/' + $scope.bookId).success(function(data) {
+        $scope.book = data;
+    });
+}

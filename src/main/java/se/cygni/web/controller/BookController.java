@@ -21,6 +21,8 @@ public class BookController {
 
     private JdbcTemplate jdbcTemplate;
 
+    // @ToDo: Fix parameterized queries
+
     private static String SQL_ALL_BOOKS =
             "SELECT " +
                 "Böcker.BokID, " +
@@ -73,8 +75,7 @@ public class BookController {
     @ResponseBody
     public Book byId(@PathVariable String id) {
 
-        return null;
-        //return this.jdbcTemplate.queryForList("select distinct TitelSV from Titlar order by TitelSV asc", String.class);
+        return this.jdbcTemplate.query(SQL_ALL_BOOKS + " AND Böcker.BokID = " + id, new BookMapper()).get(0);
     }
 
     @RequestMapping("list")

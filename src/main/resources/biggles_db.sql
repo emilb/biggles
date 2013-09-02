@@ -394,7 +394,7 @@ INSERT INTO `SVFörlag` (`SVFörlagID`, `SVFörlag`, `SVkort`) VALUES (7, 'B Wah
 INSERT INTO `SVFörlag` (`SVFörlagID`, `SVFörlag`, `SVkort`) VALUES (8, 'B Wahlströms Lejonserien', 'BW Lejon');
 INSERT INTO `SVFörlag` (`SVFörlagID`, `SVFörlag`, `SVkort`) VALUES (9, 'Åhlén & Åkerlund/Bonniers (från serien Pojkarnas Flygbok)', 'Å&Å/Bonn');
 INSERT INTO `SVFörlag` (`SVFörlagID`, `SVFörlag`, `SVkort`) VALUES (10, 'SEMIC (seriealbum)', 'SEMIC');
-INSERT INTO `SVFörlag` (`SVFörlagID`, `SVFörlag`, `SVkort`) VALUES (11, 'B. Wahlströms Bokförlag AB', 'Wahlströms');
+INSERT INTO `SVFörlag` (`SVFörlagID`, `SVFörlag`, `SVkort`) VALUES (11, 'B Wahlströms Bokförlag AB', 'Wahlströms');
 INSERT INTO `SVFörlag` (`SVFörlagID`, `SVFörlag`, `SVkort`) VALUES (12, 'Disney''s ungdomsbokklubb', 'Disney');
 INSERT INTO `SVFörlag` (`SVFörlagID`, `SVFörlag`, `SVkort`) VALUES (13, 'Albert Bonniers Förlag (serien Flyg-böckerna)', 'Bonn');
 INSERT INTO `SVFörlag` (`SVFörlagID`, `SVFörlag`, `SVkort`) VALUES (14, 'Iris Förlag (kassettband)', 'Iris');

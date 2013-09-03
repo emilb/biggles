@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-8" ng-controller="BookListPublisherCtrl">
+        <h2>Böcker publicerade av {{publisher.name}}</h2>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Titel</th>
+                    <th>Org. titel</th>
+                    <th>Förlag</th>
+                    <th>Upplaga</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="book in books" ng-click="showDetail(book)">
+                    <td><a href="#/book/{{book.titleSwedishSlug}}/{{book.id}}">{{book.titleSwedish}}</a></td>
+                    <td>{{book.titleEnglish}}</td>
+                    <td>{{book.publisherSwedish}}</td>
+                    <td>{{book.yearThisEdition}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,7 @@ import se.cygni.web.util.WebUtil;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -67,13 +68,15 @@ public class BookController {
     @Autowired
     public BookController(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+
+        // Warmup database
+        listByPublisher(4);
     }
 
     @RequestMapping("id/{id}")
     @ResponseBody
-    public Book byId(@PathVariable String id) {
-
-        return this.jdbcTemplate.queryForObject(SQL_ALL_BOOKS + "AND Böcker.BokID = ?", new Object[] {id}, new BookMapper());
+    public Book byId(@PathVariable int id) {
+        return this.jdbcTemplate.queryForObject(createQuery("Böcker.BokID", false), new Object[] {id}, new BookMapper());
     }
 
     @RequestMapping("list")
@@ -91,22 +94,50 @@ public class BookController {
     @RequestMapping("list/title")
     @ResponseBody
     public List<String> listTitles() {
-        return this.jdbcTemplate.queryForList("select distinct TitelSV from Titlar order by TitelSV asc", String.class);
+        return this.jdbcTemplate.queryForList("SELECT DISTINCT Titlar.TitelSV FROM Titlar, Böcker WHERE Böcker.TitelID = Titlar.TitelID order by TitelSV asc", String.class);
+    }
+
+    @RequestMapping("list/title/id/{id}")
+    @ResponseBody
+    public List<Book> listByTitle(@PathVariable int id) {
+        return this.jdbcTemplate.query(createQuery("Titlar.TitelID", false), new Object[] {id}, new BookMapper());
     }
 
     @RequestMapping("list/publisher/id/{id}")
     @ResponseBody
     public List<Book> listByPublisher(@PathVariable int id) {
-        // WTF Why doesn't this work?
-//        return this.jdbcTemplate.query(createQuery("SVFörlag.SVFörlagID", false), new Object[] {id}, new BookMapper());
-        return this.jdbcTemplate.query(SQL_ALL_BOOKS + "AND SVFörlag.SVFörlagID = ?", new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("SVFörlag.SVFörlagID", false), new Object[] {id}, new BookMapper());
+    }
+
+    @RequestMapping("list/illustrator/id/{id}")
+    @ResponseBody
+    public List<Book> listByIllustrator(@PathVariable int id) {
+        return this.jdbcTemplate.query(createQuery("Böcker.IllustratörID", false), new Object[] {id}, new BookMapper());
+    }
+
+    @RequestMapping("list/translator/id/{id}")
+    @ResponseBody
+    public List<Book> listByTranslator(@PathVariable int id) {
+        return this.jdbcTemplate.query(createQuery("Böcker.ÖversättareID", false), new Object[] {id}, new BookMapper());
+    }
+
+    @RequestMapping("list/random/{noof}")
+    @ResponseBody
+    public List<Book> listRandomNoof(@PathVariable int noof) {
+        List<Book> allBooks = listBooks();
+        Collections.shuffle(allBooks);
+        return allBooks.subList(0, noof);
     }
 
     private String createQuery(String column, boolean isLike) {
-        if (isLike)
-            return SQL_ALL_BOOKS + "AND " + column + " LIKE CONCAT('%', ?, '%')";
+        String sql = SQL_ALL_BOOKS;
+        if (isLike) {
+            sql += "AND " + column + " LIKE CONCAT('%', ?, '%')";
+        } else {
+            sql += "AND " + column + " = ?";
+        }
 
-        return SQL_ALL_BOOKS + "AND " + column + " = ?)";
+        return sql + " ORDER BY Titlar.TitelSV asc";
     }
 
     public final class BookMapper implements RowMapper<Book> {

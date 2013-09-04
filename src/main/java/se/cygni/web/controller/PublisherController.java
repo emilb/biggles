@@ -26,6 +26,9 @@ public class PublisherController {
     @Autowired
     public PublisherController(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+
+        // Warmup (database isn't populated until the first request)
+        listPublishers();
     }
 
     @RequestMapping("list")

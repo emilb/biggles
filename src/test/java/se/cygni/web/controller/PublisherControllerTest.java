@@ -14,39 +14,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import se.cygni.web.model.Publisher;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader=AnnotationConfigContextLoader.class)
-public class PublisherControllerTest {
+public class PublisherControllerTest extends SpringBaseTest {
 
     @Autowired
     PublisherController publisherController;
-
-    @Configuration
-    @ComponentScan("se.cygni.web.controller")
-    @PropertySource("classpath:db.properties")
-    static class TestContextConfiguration {
-
-        @Autowired
-        Environment env;
-
-        @Bean
-        public DataSource getDataSource() {
-
-            BasicDataSource ds = new BasicDataSource();
-            ds.setUrl(env.getProperty("url"));
-            ds.setDriverClassName(env.getProperty("driver"));
-            ds.setUsername(env.getProperty("db.user"));
-            ds.setPassword(env.getProperty("db.pass"));
-            ds.setValidationQueryTimeout(5);
-            ds.setValidationQuery("select 1");
-            return ds;
-        }
-    }
 
     @Test
     public void testListPublishers() throws Exception {

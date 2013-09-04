@@ -24,9 +24,36 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+
+                    <!--<li class="active"><a href="#">Home</a></li>-->
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Titlar <b class="caret"></b></a>
+                        <ul class="dropdown-menu" ng-controller="TitleCtrl">
+                            <li ng-repeat="title in titles">
+                                <a href="#/title/{{title.nameSlug}}/{{title.id}}">{{title.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Översättare <b class="caret"></b></a>
+                        <ul class="dropdown-menu" ng-controller="TranslatorCtrl">
+                            <li ng-repeat="translator in translators">
+                                <a href="#/translator/{{translator.nameSlug}}/{{translator.id}}">{{translator.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Illustratörer <b class="caret"></b></a>
+                        <ul class="dropdown-menu" ng-controller="IllustratorCtrl">
+                            <li ng-repeat="illustrator in illustrators">
+                                <a href="#/illustrator/{{illustrator.nameSlug}}/{{illustrator.id}}">{{illustrator.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Förlag <b class="caret"></b></a>
                         <ul class="dropdown-menu" ng-controller="PublisherCtrl">
@@ -46,6 +73,11 @@
         </div>
     </div>
 
+    <!--<div ng-view>-->
+        <!---->
+        <!---->
+    <!--</div>-->
+
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
@@ -54,20 +86,21 @@
     </div>
 
     <div class="container">
-        <!-- Example row of columns -->
         <div ng-view>
 
         </div>
+    </div>
 
+    <div class="container">
         <hr>
-
         <footer>
             <p>&copy; Biggles i Sverige 2013</p>
         </footer>
-    </div> <!-- /container -->
+    </div>
 
     <!-- Angular -->
     <script src="resources/js/lib/angular-1.0.7.min.js"></script>
+    <script src="resources/js/lib/ui-bootstrap-tpls-0.6.0-SNAPSHOT.min.js"></script>
     <!--<script src="resources/js/lib/angular-1.2.0rc1.min.js"></script>-->
     <script src="resources/js/BooksController.js"></script>
     <script src="resources/js/BigglesApp.js"></script>

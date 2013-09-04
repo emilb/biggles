@@ -1,9 +1,68 @@
 <div class="row">
-    <div class="col-lg-4" ng-controller="BookListCtrl">
-        <h2>{{book.titleSwedish}}</h2>
 
-                {{book.titleSwedish}}
-                <p>{{book.story}}</p>
-                <img ng-src="{{book.coverImagePath}}">
+    <div class="col-md-12">
+        <h2>{{book.titleSwedish}}</h2>
+    </div>
+
+    <div class="col-md-5">
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td><strong>Org. titel</strong></td>
+                    <td>{{book.titleEnglish}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Författare</strong></td>
+                    <td>{{book.author}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Översättare</strong></td>
+                    <td>{{book.translator}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Illustratör</strong></td>
+                    <td>{{book.illustrator}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Förlag (1:a utg)</strong></td>
+                    <td>{{book.publisherSwedish}} ({{book.yearFirstEditionSwedish}})</td>
+                </tr>
+                <tr>
+                    <td><strong>Eng. förlag (1:a utg)</strong></td>
+                    <td>{{book.publisherEnglish}} ({{book.yearFirstEditionEnglish}})</td>
+                </tr>
+                <tr>
+                    <td><strong>Denna utg.</strong></td>
+                    <td>{{book.yearThisEdition}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Antal utg.</strong></td>
+                    <td>{{book.noofEditions}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Ryggnr</strong></td>
+                    <td>{{book.coverNumber}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Har konvelut</strong></td>
+                    <td>{{book.hasCover}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Kronologisk ordning</strong></td>
+                    <td>{{book.chrono}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <img ng-src="{{book.coverImagePath}}">
+    </div>
+
+    <div class="col-md-4" ng-hide="hasNoStory">
+        <h3>Handling</h3>
+        <p>{{book.story}}</p>
     </div>
 </div>

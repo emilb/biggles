@@ -24,6 +24,11 @@ public class TitleController {
     private static String SQL_ALL_TITLES =
         "SELECT DISTINCT Titlar.TitelID, Titlar.TitelSV, Titlar.TitelENG, Titlar.Chrono FROM Titlar, Böcker WHERE Böcker.TitelID = Titlar.TitelID order by TitelSV asc";
 
+    private static String SQL_ALL_TITLES_CHRONO =
+            "SELECT DISTINCT Titlar.TitelID, Titlar.TitelSV, Titlar.TitelENG, Titlar.Chrono FROM Titlar, Böcker WHERE Böcker.TitelID = Titlar.TitelID AND Titlar.Chrono > 0" +
+                    " order by TitelSV asc";
+
+
     @Autowired
     public TitleController(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -37,6 +42,13 @@ public class TitleController {
     public List<Title> listTitles() {
 
         return this.jdbcTemplate.query(SQL_ALL_TITLES, new TitleMapper());
+    }
+
+    @RequestMapping("list/chrono")
+    @ResponseBody
+    public List<Title> listTitlesChrono() {
+
+        return this.jdbcTemplate.query(SQL_ALL_TITLES_CHRONO, new TitleMapper());
     }
 
     @RequestMapping("/id/{id}")

@@ -5,15 +5,6 @@ function AboutCtrl($scope, $http) {
     });
 }
 
-function BookListCtrl($scope, $http, $routeParams) {
-    $scope.searchTerm = $routeParams.searchTerm;
-
-    $http.get('api/book/search/title/' + $scope.searchTerm).success(function(data) {
-        $scope.books = data;
-        $scope.title = 'Sökresultat: ' + $scope.searchTerm;
-    });
-}
-
 function BookDetailCtrl($scope, $http, $routeParams) {
 	$scope.bookId = $routeParams.bookId;
     $scope.hasNoStory = true;
@@ -35,27 +26,73 @@ function BookSearchCtrl($scope, $location) {
     }
 }
 
-function TranslatorCtrl($scope, $http) {
+function TranslatorCtrl($scope, $http, $location) {
+    $scope.type = 'translator';
+    $scope.title = 'Översättare';
+
     $http.get('api/translator/list').success(function(data) {
         $scope.translators = data;
+        $scope.paginator = new BigglesUtil.Paginator(data, 10)
     });
+
+    $scope.showDetail = function(translator) {
+        $location.path('/translator/' + translator.nameSlug + '/' + translator.id);
+    }
 }
 
-function IllustratorCtrl($scope, $http) {
+function IllustratorCtrl($scope, $http, $location) {
+    $scope.type = 'illustrator';
+    $scope.title = 'Illustratörer';
+
     $http.get('api/illustrator/list').success(function(data) {
         $scope.illustrators = data;
+        $scope.paginator = new BigglesUtil.Paginator(data, 10);
     });
+
+    $scope.showDetail = function(illustrator) {
+        $location.path('/illustrator/' + illustrator.nameSlug + '/' + illustrator.id);
+    }
 }
 
-function PublisherCtrl($scope, $http) {
+function PublisherCtrl($scope, $http, $location) {
+    $scope.type = 'publisher';
+    $scope.title = 'Förlag';
+
     $http.get('api/publisher/list').success(function(data) {
         $scope.publishers = data;
+        $scope.paginator = new BigglesUtil.Paginator(data, 10);
+    });
+
+    $scope.showDetail = function(publisher) {
+        $location.path('/publisher/' + publisher.nameSlug + '/' + publisher.id);
+    }
+}
+
+function TitleAlphaCtrl($scope, $http, $location) {
+    $scope.title = 'Titlar i bokstavsordning';
+
+    $http.get('api/title/list').success(function(data) {
+        $scope.titles = data;
+        $scope.paginator = new BigglesUtil.Paginator(data, 10);
     });
 }
 
-function TitleCtrl($scope, $http) {
-    $http.get('api/title/list').success(function(data) {
+function TitleChronoCtrl($scope, $http, $location) {
+    $scope.title = 'Titlar i ordning av händelse';
+
+    $http.get('api/title/list/chrono').success(function(data) {
         $scope.titles = data;
+        $scope.paginator = new BigglesUtil.Paginator(data, 10);
+    });
+}
+
+function BookListCtrl($scope, $http, $routeParams) {
+    $scope.searchTerm = $routeParams.searchTerm;
+
+    $http.get('api/book/search/title/' + $scope.searchTerm).success(function(data) {
+        $scope.books = data;
+        $scope.title = 'Sökresultat: ' + $scope.searchTerm;
+        $scope.paginator = new BigglesUtil.Paginator(data, 10);
     });
 }
 
@@ -64,6 +101,7 @@ function BookListPublisherCtrl($scope, $http, $routeParams, $location) {
 
     $http.get('api/book/list/publisher/id/' + $scope.publisherId).success(function(data) {
         $scope.books = data;
+        $scope.paginator = new BigglesUtil.Paginator(data, 10);
     });
 
     $http.get('api/publisher/id/' + $scope.publisherId).success(function(data) {
@@ -75,11 +113,13 @@ function BookListPublisherCtrl($scope, $http, $routeParams, $location) {
         $location.path('/book/' + book.titleSwedishSlug + '/' + book.id);
     }
 }
+
 function BookListTranslatorCtrl($scope, $http, $routeParams, $location) {
     $scope.translatorId = $routeParams.translatorId;
 
     $http.get('api/book/list/translator/id/' + $scope.translatorId).success(function(data) {
         $scope.books = data;
+        $scope.paginator = new BigglesUtil.Paginator(data, 10);
     });
 
     $http.get('api/translator/id/' + $scope.translatorId).success(function(data) {
@@ -97,6 +137,7 @@ function BookListIllustratorCtrl($scope, $http, $routeParams, $location) {
 
     $http.get('api/book/list/illustrator/id/' + $scope.illustratorId).success(function(data) {
         $scope.books = data;
+        $scope.paginator = new BigglesUtil.Paginator(data, 10);
     });
 
     $http.get('api/illustrator/id/' + $scope.illustratorId).success(function(data) {
@@ -114,6 +155,7 @@ function BookListTitleCtrl($scope, $http, $routeParams, $location) {
 
     $http.get('api/book/list/title/id/' + $scope.titleId).success(function(data) {
         $scope.books = data;
+        $scope.paginator = new BigglesUtil.Paginator(data, 10);
     });
 
     $http.get('api/illustrator/id/' + $scope.titleId).success(function(data) {

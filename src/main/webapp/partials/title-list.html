@@ -1,23 +1,19 @@
     <div class="row">
         <div class="col-md-12">
-            <h2>{{title}} ({{books.length}} st)</h2>
+            <h2>{{title}}</h2>
 
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
+                        <th></th>
                         <th>Titel</th>
-                        <th>Org. titel</th>
-                        <th>Förlag</th>
-                        <th>Upplaga</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="book in paginator.itemsInCurrentPage" ng-click="showDetail(book)">
-                        <td><a href="#/book/{{book.titleSwedishSlug}}/{{book.id}}">{{book.titleSwedish}}</a></td>
-                        <td>{{book.titleEnglish}}</td>
-                        <td>{{book.publisherSwedish}}</td>
-                        <td>{{book.yearThisEdition}}</td>
+                    <tr ng-repeat="title in paginator.itemsInCurrentPage">
+                        <td>{{(paginator.currentPage-1)*paginator.itemsPerPage + $index + 1}}</td>
+                        <td><a href="#/books/search/{{title.name}}">{{title.name}}</a></td>
                     </tr>
                     </tbody>
                 </table>

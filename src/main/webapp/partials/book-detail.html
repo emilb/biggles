@@ -63,6 +63,6 @@
 
     <div class="col-md-4" ng-hide="hasNoStory">
         <h3>Handling</h3>
-        <p>{{book.story}}</p>
+        <p ng-bind-html-unsafe="book.story"></p>
     </div>
 </div>

@@ -76,7 +76,7 @@ public class BookController {
     @RequestMapping("id/{id}")
     @ResponseBody
     public Book byId(@PathVariable int id) {
-        return this.jdbcTemplate.queryForObject(createQuery("Böcker.BokID", false), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.queryForObject(createQuery("Böcker.BokID", false, true), new Object[] {id}, new BookMapper());
     }
 
     @RequestMapping("list")
@@ -88,7 +88,7 @@ public class BookController {
     @RequestMapping("search/title/{term}")
     @ResponseBody
     public List<Book> searchBooks(@PathVariable String term) {
-        return this.jdbcTemplate.query(createQuery("Titlar.TitelSV", true), new Object[] {term}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("Titlar.TitelSV", true, false) + "ORDER BY SVFörlag.SVFörlag, Böcker.DennaUpplaga ASC", new Object[] {term}, new BookMapper());
     }
 
     @RequestMapping("list/title")
@@ -100,25 +100,25 @@ public class BookController {
     @RequestMapping("list/title/id/{id}")
     @ResponseBody
     public List<Book> listByTitle(@PathVariable int id) {
-        return this.jdbcTemplate.query(createQuery("Titlar.TitelID", false), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("Titlar.TitelID", false, true), new Object[] {id}, new BookMapper());
     }
 
     @RequestMapping("list/publisher/id/{id}")
     @ResponseBody
     public List<Book> listByPublisher(@PathVariable int id) {
-        return this.jdbcTemplate.query(createQuery("SVFörlag.SVFörlagID", false), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("SVFörlag.SVFörlagID", false, true), new Object[] {id}, new BookMapper());
     }
 
     @RequestMapping("list/illustrator/id/{id}")
     @ResponseBody
     public List<Book> listByIllustrator(@PathVariable int id) {
-        return this.jdbcTemplate.query(createQuery("Böcker.IllustratörID", false), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("Böcker.IllustratörID", false, true), new Object[] {id}, new BookMapper());
     }
 
     @RequestMapping("list/translator/id/{id}")
     @ResponseBody
     public List<Book> listByTranslator(@PathVariable int id) {
-        return this.jdbcTemplate.query(createQuery("Böcker.ÖversättareID", false), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("Böcker.ÖversättareID", false, true), new Object[] {id}, new BookMapper());
     }
 
     @RequestMapping("list/random/{noof}")
@@ -129,7 +129,7 @@ public class BookController {
         return allBooks.subList(0, noof);
     }
 
-    private String createQuery(String column, boolean isLike) {
+    private String createQuery(String column, boolean isLike, boolean includeOrderBy) {
         String sql = SQL_ALL_BOOKS;
         if (isLike) {
             sql += "AND " + column + " LIKE CONCAT('%', ?, '%')";
@@ -137,7 +137,10 @@ public class BookController {
             sql += "AND " + column + " = ?";
         }
 
-        return sql + " ORDER BY Titlar.TitelSV asc";
+        if (includeOrderBy)
+            return sql + " ORDER BY Titlar.TitelSV asc";
+        else
+            return sql;
     }
 
     public final class BookMapper implements RowMapper<Book> {

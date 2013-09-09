@@ -1,11 +1,27 @@
 
     <div class="row">
-        <div class="col-md-4">
-            <h2>Om denna sajt</h2>
-            <p>bla bla bla bla</p>
-
+        <div class="col-md-6">
+            <h2>Biggles i Sverige</h2>
+            <p>
+                Här finns information om W.E. Johns böcker översatta till svenska.
+            </p>
+            <p>
+                Förutom Bigglesböckerna skrev han även några böcker om
+                <a href="#/books/search/Rex">Rex</a>,
+                <a href="#/books/search/Worrals">Worrals</a> och
+                <a href="#/books/search/King">King</a>.
+            </p>
+            <p>
+                Rättningar, kommentarer eller frågor kan skickas till mig på emil.breding (snabelA) gmail.com
+            </p>
         </div>
 
+        <div class="col-md-3">
+            <a href="#/book/{{book.titleSwedishSlug}}/{{book.id}}">
+                <img ng-src="{{book.coverImagePath}}">
+            </a>
+        </div>
+        <!--
         <div class="col-md-3">
             <carousel interval="5000">
             <slide ng-repeat="book in books" active="book.active">
@@ -14,42 +30,6 @@
                 </a>
             </slide>
             </carousel>
-        </div>
-
-
-        <!--
-        <div class="col-md-2 col-md-offset-5">
-
-            <div id="carousel-covers" class="carousel slide">
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-covers" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-covers" data-slide-to="1"></li>
-                    <li data-target="#carousel-covers" data-slide-to="2"></li>
-                    <li data-target="#carousel-covers" data-slide-to="3"></li>
-                    <li data-target="#carousel-covers" data-slide-to="4"></li>
-                    <li data-target="#carousel-covers" data-slide-to="5"></li>
-                    <li data-target="#carousel-covers" data-slide-to="6"></li>
-                    <li data-target="#carousel-covers" data-slide-to="7"></li>
-                    <li data-target="#carousel-covers" data-slide-to="8"></li>
-                    <li data-target="#carousel-covers" data-slide-to="9"></li>
-                </ol>
-
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <a href="#/book/{{firstBook.titleSwedishSlug}}/{{firstBook.id}}"><img ng-src="{{firstBook.coverImagePath}}"></a>
-                    </div>
-                    <div class="item" ng-repeat="book in books">
-                        <a href="#/book/{{book.titleSwedishSlug}}/{{book.id}}"><img ng-src="{{book.coverImagePath}}"></a>
-                    </div>
-                </div>
-
-                <a class="left carousel-control" href="#carousel-covers" data-slide="prev">
-                    <span class="icon-prev"></span>
-                </a>
-                <a class="right carousel-control" href="#carousel-covers" data-slide="next">
-                    <span class="icon-next"></span>
-                </a>
-            </div>
         </div>
         -->
     </div>

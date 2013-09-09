@@ -1,4 +1,4 @@
-angular.module('bigglesapp', []).
+angular.module('bigglesapp', ['ui.bootstrap']).
   config(['$routeProvider', function($routeProvider) {
 	  $routeProvider.
 	      when('/', {templateUrl: 'partials/about.html', controller: AboutCtrl}).

@@ -1,8 +1,16 @@
 function AboutCtrl($scope, $http) {
-    $http.get('api/book/list/random/25').success(function(data) {
-        $scope.books = data;
-        $scope.books[0].active = true;
+    $scope.showJumboTron = true;
+
+    $http.get('api/book/list/random/1').success(function(data) {
+        $scope.book = data[0];
     });
+}
+
+function HeaderController($scope, $location)
+{
+    $scope.isActive = function (viewLocation) {
+        return $location.path().indexOf(viewLocation) == 0;
+    };
 }
 
 function BookDetailCtrl($scope, $http, $routeParams) {

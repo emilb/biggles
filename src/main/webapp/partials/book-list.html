@@ -14,7 +14,7 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="book in paginator.itemsInCurrentPage" ng-click="showDetail(book)">
-                        <td><a href="#/book/{{book.titleSwedishSlug}}/{{book.id}}">{{book.titleSwedish}}</a></td>
+                        <td><a href="#/book/{{book.titleSwedishSlug}}/{{book.id}}"><span tooltip-html-unsafe="<img src='{{book.coverImagePath}}' width='90px'>" tooltip-placement="right">{{book.titleSwedish}}</span></a></td>
                         <td>{{book.titleEnglish}}</td>
                         <td>{{book.publisherSwedish}}</td>
                         <td>{{book.yearThisEdition}}</td>

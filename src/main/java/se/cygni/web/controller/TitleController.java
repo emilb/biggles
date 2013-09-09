@@ -26,7 +26,7 @@ public class TitleController {
 
     private static String SQL_ALL_TITLES_CHRONO =
             "SELECT DISTINCT Titlar.TitelID, Titlar.TitelSV, Titlar.TitelENG, Titlar.Chrono FROM Titlar, Böcker WHERE Böcker.TitelID = Titlar.TitelID AND Titlar.Chrono > 0" +
-                    " order by TitelSV asc";
+                    " order by Titlar.Chrono asc";
 
 
     @Autowired

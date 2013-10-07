@@ -1,19 +1,21 @@
-function AboutCtrl($scope, $http) {
+var aboutCtrl = function AboutCtrl($scope, $http) {
     $scope.showJumboTron = true;
 
     $http.get('api/book/list/random/1').success(function(data) {
         $scope.book = data[0];
     });
 }
+aboutCtrl.$inject = ['$scope', '$http']
 
-function HeaderController($scope, $location)
+var headerController = function HeaderController($scope, $location)
 {
     $scope.isActive = function (viewLocation) {
         return $location.path().indexOf(viewLocation) == 0;
     };
 }
+headerController.$inject = ['$scope', '$location']
 
-function BookDetailCtrl($scope, $http, $routeParams) {
+var bookDetailCtrl = function BookDetailCtrl($scope, $http, $routeParams) {
 	$scope.bookId = $routeParams.bookId;
     $scope.hasNoStory = true;
 
@@ -26,15 +28,18 @@ function BookDetailCtrl($scope, $http, $routeParams) {
         $scope.book.hasCover = $scope.book.hasCover ? 'Ja' : 'Nej';
     });
 }
+bookDetailCtrl.$inject = ['$scope', '$http', '$routeParams']
 
-function BookSearchCtrl($scope, $location) {
+var bookSearchCtrl = function BookSearchCtrl($scope, $location) {
     $scope.searchTerm = '';
     $scope.doSearch = function() {
         $location.path('/books/search/' + $scope.searchTerm);
     }
 }
+bookSearchCtrl.$inject = ['$scope', '$location']
 
-function TranslatorCtrl($scope, $http, $location) {
+
+var translatorCtrl = function TranslatorCtrl($scope, $http, $location) {
     $scope.type = 'translator';
     $scope.title = 'Översättare';
 
@@ -47,8 +52,9 @@ function TranslatorCtrl($scope, $http, $location) {
         $location.path('/translator/' + translator.nameSlug + '/' + translator.id);
     }
 }
+translatorCtrl.$inject = ['$scope', '$http', '$location']
 
-function IllustratorCtrl($scope, $http, $location) {
+var illustratorCtrl = function IllustratorCtrl($scope, $http, $location) {
     $scope.type = 'illustrator';
     $scope.title = 'Illustratörer';
 
@@ -61,8 +67,9 @@ function IllustratorCtrl($scope, $http, $location) {
         $location.path('/illustrator/' + illustrator.nameSlug + '/' + illustrator.id);
     }
 }
+illustratorCtrl.$inject = ['$scope', '$http', '$location']
 
-function PublisherCtrl($scope, $http, $location) {
+var publisherCtrl = function PublisherCtrl($scope, $http, $location) {
     $scope.type = 'publisher';
     $scope.title = 'Förlag';
 
@@ -75,8 +82,9 @@ function PublisherCtrl($scope, $http, $location) {
         $location.path('/publisher/' + publisher.nameSlug + '/' + publisher.id);
     }
 }
+publisherCtrl.$inject = ['$scope', '$http', '$location']
 
-function TitleAlphaCtrl($scope, $http, $location) {
+var titleAlphaCtrl = function TitleAlphaCtrl($scope, $http, $location) {
     $scope.title = 'Titlar i bokstavsordning';
 
     $http.get('api/title/list').success(function(data) {
@@ -84,8 +92,9 @@ function TitleAlphaCtrl($scope, $http, $location) {
         $scope.paginator = new BigglesUtil.Paginator(data, 10);
     });
 }
+titleAlphaCtrl.$inject = ['$scope', '$http', '$location']
 
-function TitleChronoCtrl($scope, $http, $location) {
+var titleChronoCtrl = function TitleChronoCtrl($scope, $http, $location) {
     $scope.title = 'Titlar i ordning av händelse';
 
     $http.get('api/title/list/chrono').success(function(data) {
@@ -93,8 +102,9 @@ function TitleChronoCtrl($scope, $http, $location) {
         $scope.paginator = new BigglesUtil.Paginator(data, 10);
     });
 }
+titleChronoCtrl.$inject = ['$scope', '$http', '$location']
 
-function BookListCtrl($scope, $http, $routeParams) {
+var bookListCtrl = function BookListCtrl($scope, $http, $routeParams) {
     $scope.searchTerm = $routeParams.searchTerm;
 
     $http.get('api/book/search/title/' + $scope.searchTerm).success(function(data) {
@@ -103,8 +113,9 @@ function BookListCtrl($scope, $http, $routeParams) {
         $scope.paginator = new BigglesUtil.Paginator(data, 10);
     });
 }
+bookListCtrl.$inject = ['$scope', '$http', '$routeParams']
 
-function BookListPublisherCtrl($scope, $http, $routeParams, $location) {
+var bookListPublisherCtrl = function BookListPublisherCtrl($scope, $http, $routeParams, $location) {
     $scope.publisherId = $routeParams.publisherId;
 
     $http.get('api/book/list/publisher/id/' + $scope.publisherId).success(function(data) {
@@ -121,8 +132,9 @@ function BookListPublisherCtrl($scope, $http, $routeParams, $location) {
         $location.path('/book/' + book.titleSwedishSlug + '/' + book.id);
     }
 }
+bookListPublisherCtrl.$inject = ['$scope', '$http', '$routeParams', '$location']
 
-function BookListTranslatorCtrl($scope, $http, $routeParams, $location) {
+var bookListTranslatorCtrl = function BookListTranslatorCtrl($scope, $http, $routeParams, $location) {
     $scope.translatorId = $routeParams.translatorId;
 
     $http.get('api/book/list/translator/id/' + $scope.translatorId).success(function(data) {
@@ -139,8 +151,9 @@ function BookListTranslatorCtrl($scope, $http, $routeParams, $location) {
         $location.path('/book/' + book.titleSwedishSlug + '/' + book.id);
     }
 }
+bookListTranslatorCtrl.$inject = ['$scope', '$http', '$routeParams', '$location']
 
-function BookListIllustratorCtrl($scope, $http, $routeParams, $location) {
+var bookListIllustratorCtrl = function BookListIllustratorCtrl($scope, $http, $routeParams, $location) {
     $scope.illustratorId = $routeParams.illustratorId;
 
     $http.get('api/book/list/illustrator/id/' + $scope.illustratorId).success(function(data) {
@@ -157,8 +170,9 @@ function BookListIllustratorCtrl($scope, $http, $routeParams, $location) {
         $location.path('/book/' + book.titleSwedishSlug + '/' + book.id);
     }
 }
+bookListIllustratorCtrl.$inject = ['$scope', '$http', '$routeParams', '$location']
 
-function BookListTitleCtrl($scope, $http, $routeParams, $location) {
+var bookListTitleCtrl = function BookListTitleCtrl($scope, $http, $routeParams, $location) {
     $scope.titleId = $routeParams.titleId;
 
     $http.get('api/book/list/title/id/' + $scope.titleId).success(function(data) {
@@ -175,3 +189,4 @@ function BookListTitleCtrl($scope, $http, $routeParams, $location) {
         $location.path('/book/' + book.titleSwedishSlug + '/' + book.id);
     }
 }
+bookListTitleCtrl.$inject = ['$scope', '$http', '$routeParams', '$location']

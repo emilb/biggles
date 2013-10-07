@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Bootstrap -->
-    <link href="resources/css/bootstrap-3.0.min.css" rel="stylesheet" media="screen">
+    <!--<link href="resources/css/bootstrap-3.0.min.css" rel="stylesheet" media="screen">-->
+    <link href="resources/css/style.min.css" rel="stylesheet" media="screen">
 </head>
 
 <body>
 
-    <div class="navbar navbar-default" ng-controller="HeaderController">
+    <div class="navbar navbar-default" ng-controller="headerController">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,8 +25,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-
-                    <!--<li class="active"><a href="#">Home</a></li>-->
 
                     <li ng-class="{ active: isActive('/titles')}" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Titlar <b class="caret"></b></a>
@@ -42,7 +41,7 @@
                     <li ng-class="{ active: isActive('/publishers')}"><a href="#/publishers">Förlag</a></li>
 
                 </ul>
-                <form class="navbar-form navbar-right" ng-controller="BookSearchCtrl">
+                <form class="navbar-form navbar-right" ng-controller="bookSearchCtrl">
                     <div class="form-group">
                         <input type="text" placeholder="Titel" class="form-control" ng-model="searchTerm" name="searchTerm">
                     </div>
@@ -68,22 +67,23 @@
     <div class="container">
         <hr>
         <footer>
-            <p>&copy; Emil Breding 2013</p>
+            <p>&copy; Emil Breding 2013 Biggles v${project.version}</p>
         </footer>
     </div>
 
+
+    <script src="resources/js/app.min.js"></script>
     <!-- Angular -->
-    <script src="resources/js/lib/angular-1.0.8.min.js"></script>
-    <script src="resources/js/lib/ui-bootstrap-tpls-0.6.0-SNAPSHOT.min.js"></script>
-    <!--<script src="resources/js/lib/angular-1.2.0rc1.min.js"></script>-->
-    <script src="resources/js/BigglesControllers.js"></script>
-    <script src="resources/js/BigglesApp.js"></script>
+    <!--<script src="resources/js/lib/angular-1.0.8.min.js"></script>-->
+    <!--<script src="resources/js/lib/ui-bootstrap-tpls-0.6.0-SNAPSHOT.min.js"></script>-->
+    <!--<script src="resources/js/BigglesControllers.js"></script>-->
+    <!--<script src="resources/js/BigglesApp.js"></script>-->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="resources/js/lib/jquery-2.0.3.min.js"></script>
+    <!--<script src="resources/js/lib/jquery-2.0.3.min.js"></script>-->
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="resources/js/lib/bootstrap-3.0.min.js"></script>
+    <!--<script src="resources/js/lib/bootstrap-3.0.min.js"></script>-->
 </body>
 
 </html>

@@ -24,6 +24,7 @@ public class Initializer implements WebApplicationInitializer {
                 servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);
+        servlet.setInitParameter("cacheControl", "max-age=3600,resources");
     }
 
 }

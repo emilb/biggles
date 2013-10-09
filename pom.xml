@@ -190,6 +190,9 @@
                         <geb.build.baseUrl>http://localhost:9080</geb.build.baseUrl>
                         <geb.build.reportsDir>target/test-reports/geb</geb.build.reportsDir>
                     </systemPropertyVariables>
+                    <classpathDependencyExcludes>
+                        <classpathDependencyExcludes>ch.qos.logback:logback-classic</classpathDependencyExcludes>
+                    </classpathDependencyExcludes>
                 </configuration>
                 <executions>
                     <execution>

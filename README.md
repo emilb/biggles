@@ -7,7 +7,7 @@ Steg 1
 4. Verifiera att projektet bygger samt kan deployas i jetty
 
 Referenser och hjälp:
-http://maven.apache.org/plugins
+* http://maven.apache.org/plugins
 
 Tips:
 ```bash

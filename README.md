@@ -22,8 +22,8 @@ att menyvalet är gråmarkerat).
 1. Kopiera filen src/test/groovy/IllustratorsSpec.groovy till src/test/groovy/TitlesAlphaSpec.groovy
 2. Modifiera TitlesAlphaSpec att gå till sidan TitlesAlphaPage
 3. I waitFor klausulen verifiera
-3.1 att första boken i listan är "Biggles & Co".
-3.2 att det finns totalt 13 sidor i tabellnavigeraren.
+   - att första boken i listan är "Biggles & Co".
+   - att det finns totalt 13 sidor i tabellnavigeraren.
 
 Referenser och hjälp:
 http://www.gebish.org/manual/0.7.2/navigator.html#interacting_with_content

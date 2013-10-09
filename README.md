@@ -11,7 +11,7 @@ I src/main/webapp/resources/js/BigglesApp.js finns en klass som heter BigglesUti
 används för att dela upp en array med objekt i sidor. Ett embryo till test finns i
 src/test/javascript/paginator_spec.js
 
-1. Verifiera att javascripttesterna i nuläget inte går igenom.
+1. Verifiera att javascripttesterna i nuläget inte passerar.
 2. Komplettera paginator_spec.js med meningsfulla tester
 3. Säkerställ att hela projektet bygger igen.
 

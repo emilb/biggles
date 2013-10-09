@@ -12,6 +12,7 @@ Spring och SpringMVC driver restdelarna och det hela kompileras, testas och pake
 
 Verktyg och ramverk:
 http://spring.io/
+
 http://jackson.codehaus.org/
 http://angularjs.org/
 http://maven.apache.org/

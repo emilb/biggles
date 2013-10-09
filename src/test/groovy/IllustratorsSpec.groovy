@@ -5,7 +5,6 @@ class IllustratorsSpec extends GebReportingSpec {
 
     def "List illustrators"() {
         when:
-//            go "/#illustrators"
             to IllustratorsPage
         then:
             at IllustratorsPage

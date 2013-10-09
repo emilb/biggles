@@ -23,6 +23,8 @@ driver = {
 
 environments {
 
+    reportsDir = new File("target/test-reports/geb/")
+    baseUrl = "http://localhost:9080"
     // run as “mvn -Dgeb.env=chrome test”
     // See: http://code.google.com/p/selenium/wiki/ChromeDriver
     chrome {
@@ -32,6 +34,6 @@ environments {
 }
 
 waiting {
-    timeout = 40
+    timeout = 15
     retryInterval = 0.5
 }

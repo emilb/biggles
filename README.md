@@ -17,4 +17,4 @@ mvn compile
 mvn install
 mvn jetty:run
 ```
-Jetty är konfigurerad att lyssna på port 9080 vilket gör att du kan surfa till: http://localhost:9080
+Jetty är konfigurerad att lyssna på port 9080 vilket gör att du kan surfa till: <http://localhost:9080>

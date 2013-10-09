@@ -11,13 +11,12 @@ Databasen är H2 (en minnesdatabas skriven i Java) och populeras från en textfi
 Spring och SpringMVC driver restdelarna och det hela kompileras, testas och paketeras av Maven.
 
 Verktyg och ramverk:
-http://spring.io/
-
-http://jackson.codehaus.org/
-http://angularjs.org/
-http://maven.apache.org/
-http://www.gebish.org/
-http://pivotal.github.io/jasmine/
+* http://spring.io/
+* http://jackson.codehaus.org/
+* http://angularjs.org/
+* http://maven.apache.org/
+* http://www.gebish.org/
+* http://pivotal.github.io/jasmine/
 
 Kom igång:
 ```bash
@@ -26,5 +25,6 @@ cd biggles
 mvn jetty:run
 ```
 
-Surfa till: http://localhost:9080/
+Surfa till:
+* http://localhost:9080/
 

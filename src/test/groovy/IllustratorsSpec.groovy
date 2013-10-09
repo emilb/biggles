@@ -9,9 +9,6 @@ class IllustratorsSpec extends GebReportingSpec {
         then:
             at IllustratorsPage
             waitFor {
-                $('h2', 0).text() == 'Illustratörer'
-                $('li.active').text() == 'Illustratörer'
-
                 // Look for Bertil Hegland
                 def foundBertil = false
 

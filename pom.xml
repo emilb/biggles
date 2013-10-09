@@ -49,10 +49,6 @@
                     <sourceIncludes>
                         <include>**/*.js</include>
                     </sourceIncludes>
-                    <sourceExcludes>
-                        <!-- exclude app.min.js which is only a placeholder for minified scripts -->
-                        <exclude>**/app.min.js</exclude>
-                    </sourceExcludes>
                     <!-- Explicit preload to make sure scripts are loaded in correct order -->
                     <preloadSources>
                         <preloadSource>src/main/webapp/resources/js/lib/jquery-2.0.3.min.js</preloadSource>
@@ -79,7 +75,6 @@
                             </includes>
                         </resource>
                     </webResources>
-                    <warSourceExcludes>resources/js/app.min.js,resources/css/style.min.css</warSourceExcludes>
                 </configuration>
             </plugin>
 
@@ -162,41 +157,6 @@
                     <execution>
                         <goals>
                             <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.samaxes.maven</groupId>
-                <artifactId>minify-maven-plugin</artifactId>
-                <version>1.7.2</version>
-                <executions>
-                    <execution>
-                        <id>default-minify</id>
-                        <!-- When omitted defaults to <phase>process-resources</phase> -->
-                        <phase>prepare-package</phase>
-                        <configuration>
-                            <charset>UTF-8</charset>
-                            <cssSourceDir>resources/css</cssSourceDir>
-                            <cssSourceFiles>
-                                <cssSourceFile>bootstrap-3.0.css</cssSourceFile>
-                            </cssSourceFiles>
-                            <cssFinalFile>style.css</cssFinalFile>
-                            <jsSourceDir>resources/js</jsSourceDir>
-                            <jsSourceFiles>
-                                <jsSourceFile>lib/angular-1.0.8.min.js</jsSourceFile>
-                                <jsSourceFile>lib/ui-bootstrap-tpls-0.6.0-SNAPSHOT.min.js</jsSourceFile>
-                                <jsSourceFile>BigglesControllers.js</jsSourceFile>
-                                <jsSourceFile>BigglesApp.js</jsSourceFile>
-                                <jsSourceFile>lib/jquery-2.0.3.min.js</jsSourceFile>
-                                <jsSourceFile>lib/bootstrap-3.0.min.js</jsSourceFile>
-                            </jsSourceFiles>
-                            <jsFinalFile>app.js</jsFinalFile>
-                            <jsEngine>CLOSURE</jsEngine>
-                        </configuration>
-                        <goals>
-                            <goal>minify</goal>
                         </goals>
                     </execution>
                 </executions>

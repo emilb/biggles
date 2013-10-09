@@ -14,7 +14,7 @@ Det går att byta Selenium-driver genom att modifiera filen /test/resources/GebC
 FirefoxDriver verkar (förutom PhantomJS) fungera bäst.
 
 Din uppgift är att skriva en spec för att testa sidan som listar alla boktitlar i
-bokstavsordning: http://localhost:9080/#/titles/alpha
+bokstavsordning: <http://localhost:9080/#/titles/alpha>
 
 Det finns redan ett pageobjekt som verifierar det grundläggande i sidan (rätt titel och
 att menyvalet är gråmarkerat).
@@ -26,7 +26,7 @@ att menyvalet är gråmarkerat).
    - att det finns totalt 13 sidor i tabellnavigeraren.
 
 Referenser och hjälp:
-http://www.gebish.org/manual/0.7.2/navigator.html#interacting_with_content
+* http://www.gebish.org/manual/0.7.2/navigator.html#interacting_with_content
 
 Om du kör Geb-testet från din IDE måste du först själv starta applikationen med:
 ```bash

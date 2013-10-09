@@ -16,15 +16,15 @@ src/test/javascript/paginator_spec.js
 3. Säkerställ att hela projektet bygger igen.
 
 Referenser och hjälp:
-http://searls.github.io/jasmine-maven-plugin/
-http://pivotal.github.io/jasmine/
+* http://searls.github.io/jasmine-maven-plugin/
+* http://pivotal.github.io/jasmine/
 
 Jasmine har ett BDD mode som startas via:
 ```bash
 mvn jasmine:bdd
 ```
 
-Öppna sen en webläsare mot http://localhost:8234/ så får du kontinuerliga uppdateringar av testresultaten.
+Öppna sen en webläsare mot <http://localhost:8234/> så får du kontinuerliga uppdateringar av testresultaten.
 
 Övriga kommandon:
 ```bash

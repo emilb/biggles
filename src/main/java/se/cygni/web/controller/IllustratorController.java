@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import se.cygni.web.model.Illustrator;
-import se.cygni.web.model.Publisher;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -22,7 +21,7 @@ public class IllustratorController {
     private JdbcTemplate jdbcTemplate;
 
     private static String SQL_ALL_ILLUSTRATORS =
-        "SELECT * FROM Illustratörer ORDER BY Efternamn";
+            "SELECT * FROM Illustratörer ORDER BY Efternamn";
 
     @Autowired
     public IllustratorController(DataSource dataSource) {
@@ -43,7 +42,7 @@ public class IllustratorController {
     @ResponseBody
     public Illustrator byId(@PathVariable int id) {
 
-        return this.jdbcTemplate.queryForObject("SELECT * FROM Illustratörer WHERE IllustratörID = ?", new Object[] {id}, new IllustratorMapper());
+        return this.jdbcTemplate.queryForObject("SELECT * FROM Illustratörer WHERE IllustratörID = ?", new Object[]{id}, new IllustratorMapper());
     }
 
     public final class IllustratorMapper implements RowMapper<Illustrator> {
@@ -53,7 +52,7 @@ public class IllustratorController {
             return new Illustrator(
                     rs.getInt("IllustratörID"),
                     rs.getString("Förnamn") + " " + rs.getString("Efternamn")
-                    );
+            );
         }
     }
 }

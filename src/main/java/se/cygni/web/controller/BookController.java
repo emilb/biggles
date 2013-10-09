@@ -24,46 +24,46 @@ public class BookController {
 
     private static String SQL_ALL_BOOKS =
             "SELECT " +
-                "Böcker.BokID, " +
-                "Böcker.SV1upplaga, " +
-                "Böcker.DennaUpplaga, " +
-                "Böcker.AntalUpplagor, " +
-                "Böcker.RyggNr, " +
-                "Böcker.Konvelut, " +
-                "Böcker.Handling, " +
-                "Författare.Efternamn as FörfattareEfternamn, " +
-                "Författare.Förnamn as FörfattareFörnamn, " +
-                "Titlar.TitelSV, " +
-                "Titlar.TitelENG, " +
-                "Titlar.ENG1upplaga, " +
-                "Titlar.Chrono, " +
-                "Illustratörer.Efternamn as IllustratörEfternamn, " +
-                "Illustratörer.Förnamn as IllustratörFörnamn, " +
-                "Översättare.Efternamn as ÖversättareEfternamn, " +
-                "Översättare.Förnamn as ÖversättareFörnamn, " +
-                "EngFörlag.ENGFörlag, " +
-                "EngFörlag.ENGkort, " +
-                "SVFörlag.SVFörlag, " +
-                "SVFörlag.SVkort, " +
-                "RevÖversättare.Efternamn as RevÖversättareEfternamn, " +
-                "RevÖversättare.Förnamn as RevÖversättareFörnamn " +
-            "FROM " +
-                "Författare Författare, " +
-                "Titlar Titlar, " +
-                "Illustratörer Illustratörer, " +
-                "Böcker Böcker, " +
-                "`Översättare` Översättare, " +
-                "EngFörlag EngFörlag, " +
-                "SVFörlag SVFörlag, " +
-                "`Översättare` RevÖversättare " +
-            "WHERE " +
-                "Böcker.TitelID = Titlar.TitelID AND " +
-                "Böcker.FörfattareID = Författare.FörfattareID AND " +
-                "Böcker.SVFörlag = SVFörlag.SVFörlagID AND " +
-                "Böcker.`ÖversättareID` = Översättare.ÖversättareID AND " +
-                "Böcker.RevÖversättareID = RevÖversättare.ÖversättareID AND " +
-                "Böcker.IllustratörID = Illustratörer.IllustratörID AND " +
-                "Titlar.ENGFörlag = EngFörlag.ENGFörlagID ";
+                    "Böcker.BokID, " +
+                    "Böcker.SV1upplaga, " +
+                    "Böcker.DennaUpplaga, " +
+                    "Böcker.AntalUpplagor, " +
+                    "Böcker.RyggNr, " +
+                    "Böcker.Konvelut, " +
+                    "Böcker.Handling, " +
+                    "Författare.Efternamn as FörfattareEfternamn, " +
+                    "Författare.Förnamn as FörfattareFörnamn, " +
+                    "Titlar.TitelSV, " +
+                    "Titlar.TitelENG, " +
+                    "Titlar.ENG1upplaga, " +
+                    "Titlar.Chrono, " +
+                    "Illustratörer.Efternamn as IllustratörEfternamn, " +
+                    "Illustratörer.Förnamn as IllustratörFörnamn, " +
+                    "Översättare.Efternamn as ÖversättareEfternamn, " +
+                    "Översättare.Förnamn as ÖversättareFörnamn, " +
+                    "EngFörlag.ENGFörlag, " +
+                    "EngFörlag.ENGkort, " +
+                    "SVFörlag.SVFörlag, " +
+                    "SVFörlag.SVkort, " +
+                    "RevÖversättare.Efternamn as RevÖversättareEfternamn, " +
+                    "RevÖversättare.Förnamn as RevÖversättareFörnamn " +
+                    "FROM " +
+                    "Författare Författare, " +
+                    "Titlar Titlar, " +
+                    "Illustratörer Illustratörer, " +
+                    "Böcker Böcker, " +
+                    "`Översättare` Översättare, " +
+                    "EngFörlag EngFörlag, " +
+                    "SVFörlag SVFörlag, " +
+                    "`Översättare` RevÖversättare " +
+                    "WHERE " +
+                    "Böcker.TitelID = Titlar.TitelID AND " +
+                    "Böcker.FörfattareID = Författare.FörfattareID AND " +
+                    "Böcker.SVFörlag = SVFörlag.SVFörlagID AND " +
+                    "Böcker.`ÖversättareID` = Översättare.ÖversättareID AND " +
+                    "Böcker.RevÖversättareID = RevÖversättare.ÖversättareID AND " +
+                    "Böcker.IllustratörID = Illustratörer.IllustratörID AND " +
+                    "Titlar.ENGFörlag = EngFörlag.ENGFörlagID ";
 
     @Autowired
     public BookController(DataSource dataSource) {
@@ -76,7 +76,7 @@ public class BookController {
     @RequestMapping("id/{id}")
     @ResponseBody
     public Book byId(@PathVariable int id) {
-        return this.jdbcTemplate.queryForObject(createQuery("Böcker.BokID", false, true), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.queryForObject(createQuery("Böcker.BokID", false, true), new Object[]{id}, new BookMapper());
     }
 
     @RequestMapping("list")
@@ -88,7 +88,7 @@ public class BookController {
     @RequestMapping("search/title/{term}")
     @ResponseBody
     public List<Book> searchBooks(@PathVariable String term) {
-        return this.jdbcTemplate.query(createQuery("Titlar.TitelSV", true, false) + "ORDER BY SVFörlag.SVFörlag, Böcker.DennaUpplaga ASC", new Object[] {term}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("Titlar.TitelSV", true, false) + "ORDER BY SVFörlag.SVFörlag, Böcker.DennaUpplaga ASC", new Object[]{term}, new BookMapper());
     }
 
     @RequestMapping("list/title")
@@ -100,25 +100,25 @@ public class BookController {
     @RequestMapping("list/title/id/{id}")
     @ResponseBody
     public List<Book> listByTitle(@PathVariable int id) {
-        return this.jdbcTemplate.query(createQuery("Titlar.TitelID", false, true), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("Titlar.TitelID", false, true), new Object[]{id}, new BookMapper());
     }
 
     @RequestMapping("list/publisher/id/{id}")
     @ResponseBody
     public List<Book> listByPublisher(@PathVariable int id) {
-        return this.jdbcTemplate.query(createQuery("SVFörlag.SVFörlagID", false, true), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("SVFörlag.SVFörlagID", false, true), new Object[]{id}, new BookMapper());
     }
 
     @RequestMapping("list/illustrator/id/{id}")
     @ResponseBody
     public List<Book> listByIllustrator(@PathVariable int id) {
-        return this.jdbcTemplate.query(createQuery("Böcker.IllustratörID", false, true), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("Böcker.IllustratörID", false, true), new Object[]{id}, new BookMapper());
     }
 
     @RequestMapping("list/translator/id/{id}")
     @ResponseBody
     public List<Book> listByTranslator(@PathVariable int id) {
-        return this.jdbcTemplate.query(createQuery("Böcker.ÖversättareID", false, true), new Object[] {id}, new BookMapper());
+        return this.jdbcTemplate.query(createQuery("Böcker.ÖversättareID", false, true), new Object[]{id}, new BookMapper());
     }
 
     @RequestMapping("list/random/{noof}")
@@ -166,7 +166,7 @@ public class BookController {
                     rs.getString("Handling"),
                     WebUtil.getCoverImageUrl(rs.getString("SVFörlag.SVkort"), rs.getString("TitelSV"), rs.getString("DennaUpplaga")), //coverImagePath
                     rs.getInt("Chrono")
-                    );
+            );
         }
     }
 }

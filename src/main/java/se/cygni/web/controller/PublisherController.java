@@ -21,7 +21,7 @@ public class PublisherController {
     private JdbcTemplate jdbcTemplate;
 
     private static String SQL_ALL_PUBLISHERS =
-        "SELECT * FROM SVFörlag ORDER BY SVFörlag";
+            "SELECT * FROM SVFörlag ORDER BY SVFörlag";
 
     @Autowired
     public PublisherController(DataSource dataSource) {
@@ -42,7 +42,7 @@ public class PublisherController {
     @ResponseBody
     public Publisher byId(@PathVariable int id) {
 
-        return this.jdbcTemplate.queryForObject("SELECT * FROM SVFörlag WHERE SVFörlagId = ?", new Object[] {id}, new PublisherMapper());
+        return this.jdbcTemplate.queryForObject("SELECT * FROM SVFörlag WHERE SVFörlagId = ?", new Object[]{id}, new PublisherMapper());
     }
 
     public final class PublisherMapper implements RowMapper<Publisher> {
@@ -53,7 +53,7 @@ public class PublisherController {
                     rs.getInt("SVFörlagID"),
                     rs.getString("SVFörlag"),
                     rs.getString("SVkort")
-                    );
+            );
         }
     }
 }

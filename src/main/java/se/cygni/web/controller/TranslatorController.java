@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import se.cygni.web.model.Illustrator;
 import se.cygni.web.model.Translator;
 
 import javax.sql.DataSource;
@@ -22,7 +21,7 @@ public class TranslatorController {
     private JdbcTemplate jdbcTemplate;
 
     private static String SQL_ALL_TRANSLATORS =
-        "SELECT * FROM Översättare ORDER BY Efternamn";
+            "SELECT * FROM Översättare ORDER BY Efternamn";
 
     @Autowired
     public TranslatorController(DataSource dataSource) {
@@ -43,7 +42,7 @@ public class TranslatorController {
     @ResponseBody
     public Translator byId(@PathVariable int id) {
 
-        return this.jdbcTemplate.queryForObject("SELECT * FROM Översättare WHERE ÖversättareID = ?", new Object[] {id}, new TranslatorMapper());
+        return this.jdbcTemplate.queryForObject("SELECT * FROM Översättare WHERE ÖversättareID = ?", new Object[]{id}, new TranslatorMapper());
     }
 
     public final class TranslatorMapper implements RowMapper<Translator> {
@@ -53,7 +52,7 @@ public class TranslatorController {
             return new Translator(
                     rs.getInt("ÖversättareID"),
                     rs.getString("Förnamn") + " " + rs.getString("Efternamn")
-                    );
+            );
         }
     }
 }

@@ -11,7 +11,7 @@ public class Publisher {
     public Publisher(int id, String name, String shortName) {
         this.id = id;
         this.name = name;
-        this.nameSlug = Slugify.slugify(name);
+        this.nameSlug = new Slugify(true).slugify(name);
         this.shortName = shortName;
     }
 }

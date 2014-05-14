@@ -15,6 +15,6 @@ public class Title {
         this.nameEnglish = nameEnglish;
         this.id = id;
         this.chrono = chrono;
-        this.nameSlug = Slugify.slugify(name);
+        this.nameSlug = new Slugify(true).slugify(name);
     }
 }

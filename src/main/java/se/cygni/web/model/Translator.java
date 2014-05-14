@@ -11,6 +11,6 @@ public class Translator {
     public Translator(int id, String name) {
         this.name = name;
         this.id = id;
-        this.nameSlug = Slugify.slugify(name);
+        this.nameSlug = new Slugify(true).slugify(name);
     }
 }

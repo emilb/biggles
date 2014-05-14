@@ -32,7 +32,7 @@ public class Book {
 
         this.id = id;
         this.titleSwedish = titleSwedish;
-        this.titleSwedishSlug = Slugify.slugify(titleSwedish);
+        this.titleSwedishSlug = new Slugify(true).slugify(titleSwedish);
         this.titleEnglish = titleEnglish;
         this.author = author;
         this.translator = translator;

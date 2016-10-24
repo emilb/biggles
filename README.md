@@ -16,7 +16,7 @@ Verktyg och ramverk:
 * http://angularjs.org/
 * http://maven.apache.org/
 * http://www.gebish.org/
-* http://pivotal.github.io/jasmine/
+* https://jasmine.github.io/
 
 Kom igång:
 ```bash
